@@ -26,49 +26,31 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <input type="text" class="form-control" placeholder="이름 혹은 닉네임"/>
-                    <textarea class="form-control" placeholder="2017년 세웠던 계획을 적어주세요" rows="3"></textarea>
-                    <br />
-                    <a href="#" class="btn btn-primary btn-sm pull-right">작성하기</a>
+                    <form action="/post" method="POST">
+                        <input type="text" name="nick" class="form-control" placeholder="이름 혹은 닉네임"/>
+                        <textarea class="form-control" name="msg" placeholder="2017년 세웠던 계획을 적어주세요" rows="3"></textarea>
+                        <br />
+                        <input type="submit" class="btn btn-primary btn-sm pull-right" value="고해성사 하기"/>
+                    </form>
                     <div class="clearfix"></div>
                     <hr />
                     <ul class="media-list">
-                        <li class="media">
-                            <div class="media-body">
-                                <strong class="text-success">조성수</strong>
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted">추천: 10</small>
-                                </span>
-                                <p>
-                                    오버워치 골드까지 가겠다
-                                </p>
-                                <a href="#" class="btn btn-primary btn-sm pull-right">과한 꿈</a>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-body">
-                                <strong class="text-success">김애영</strong>
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted">추천: 5</small>
-                                </span>
-                                <p>
-                                    이직을 하지 않겠다
-                                </p>
-                                <a href="#" class="btn btn-primary btn-sm pull-right">과한 꿈</a>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-body">
-                                <strong class="text-success">김소연</strong>
-                                <span class="text-muted pull-right">
-                                    <small class="text-muted">추천: 1</small>
-                                </span>
-                                <p>
-                                    파이썬을 주 개발 언어로 사용하겠다
-                                </p>
-                                <a href="#" class="btn btn-primary btn-sm pull-right">과한 꿈</a>
-                            </div>
-                        </li>
+                        {% for a in articles %}
+                            <li class="media">
+                                <div class="media-body">
+                                    <strong class="text-success">{{ a.author }}</strong>
+                                    <span class="text-muted pull-right">
+                                        <small class="text-muted">추천: {{ a.thumbs }}</small>
+                                    </span>
+                                    <p>
+                                        {{ a.msg }}
+                                    </p>
+                                    {% if a.btn == 1 %}
+                                        <a href="/thumbs/{{ a.id }}" class="btn btn-primary btn-sm pull-right">과한 꿈</a>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
