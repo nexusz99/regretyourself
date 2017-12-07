@@ -1,3 +1,5 @@
+import os
+import sys
 import random
 
 from flask import Flask, render_template, make_response, request, redirect
@@ -68,5 +70,6 @@ def post_article():
 
 
 if __name__ == '__main__':
+    os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
     app.run(host='0.0.0.0', threaded=True)
     init_db()
