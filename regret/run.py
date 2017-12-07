@@ -1,17 +1,14 @@
 import os
-import sys
 import random
-
-from flask import Flask, render_template, make_response, request, redirect
-
-from regret.models import Article, ThumbsUp
-from regret.database import db_session, init_db, engine
-
-from sqlalchemy import and_
-
+import sys
 from datetime import datetime
 
+from flask import Flask, render_template, make_response, request, redirect
 from pytz import timezone
+from sqlalchemy import and_
+
+from regret.database import db_session, init_db
+from regret.models import Article, ThumbsUp
 
 app = Flask(__name__)
 
