@@ -32,6 +32,7 @@ def index():
         z = {'id': a.id, 'author': a.author, 'msg': a.msg,
              'thumbs': len(a.thumbsup), 'btn': 1 if t is None else 0}
         ar_page.append(z)
+    ar_page = sorted(ar_page, lambda k: k['thumbs'])
     resp = make_response(render_template('index.html', articles=ar_page))
     if not get_cookie():
         resp.set_cookie('regret', "%0x" % random.getrandbits(128))
